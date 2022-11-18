@@ -1,0 +1,22 @@
+#navbar{
+    background-color:black;
+    display:flex;
+    justify-content:end;
+    padding-right:20px;
+    color:white;
+}
+
+.tabs{
+    display:flex;
+    gap:5px;
+}
+.tabs>div{
+    padding:15px 5px;
+    font-size:18px;
+    font-weight:800
+}
+.tabs>div:hover{
+    background-color:white;
+    color:black;
+    cursor:pointer;
+}
