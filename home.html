@@ -4,39 +4,131 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <style>
+        .form{
+            width: 25rem;
+            display: block;
+            margin: auto;            
+            display: flex;
+            flex-direction: column;
+            border: 2px solid black;
+            padding:20px;
+        }
+        .heading{
+            text-align: center;
+            font-size: 25px;
+            margin-top: 20px;
+            margin-bottom: 0px;
+            
+        }
+        .form>label{
+            font-size: 15px;
+            padding: 2px;
+            padding-top: 10px;
+        }
+        .text-input{
+            padding:5px;
+        }
+        .submit{
+            margin-top: 20px;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div>
+    <h3 class="heading">Add Book</h3>
+
+    <div class="form">
         <label>Book Name</label>
         <input
         type="text"
-        placeholder="book name"
-        class="input-type"
+        placeholder="Book name"
+        class="text-input"
+        id="bookName"
         />
-        <label>Book Name</label>
+        <label>Author Name</label>
+        <input
+        type="text"
+        placeholder="Author name"
+        id="authName"
+        class="text-input"
+        />
+        <label>Book Description</label>
+        <input
+        type="text"
+        placeholder="Book description"
+        id="bookDesc"
+        class="text-input"
+        />
+        <label>Added Date</label>
         <input
         type="date"
-        class="input-type"
+        id="date"
+        class="text-input"
         />
-        <label>Book Name</label>
+        <label>Book Category</label>
+        <select
+         class="text-input"
+         id="select"
+        >
+            <option value="Sports">
+                Sports
+            </option>
+            <option value="Fiction">
+                Fiction
+            </option>
+            <option value="Finance">
+                Finance
+            </option>
+            <option value="Education">
+                Education
+            </option>
+        </select>
+        <label>Price</label>
         <input
-        type="text"
-        placeholder="book name"
-        class="input-type"
+        type="number"
+        placeholder="price"
+        id="price"
+        class="text-input"
         />
-        <label>Book Name</label>
-        <input
-        type="text"
-        placeholder="book name"
-        class="input-type"
-        />
-        <label>Book Name</label>
-        <input
-        type="text"
-        placeholder="book name"
-        class="input-type"
-        />
+
+        <button class="submit" id="submit">
+            Submit
+        </button>
     </div>
     
 </body>
+<script>
+   
+    let submit=document.getElementById('submit');
+    submit.onclick=()=>{
+    let bookName=document.getElementById('bookName').value;
+    let authName=document.getElementById('authName').value;
+    let bookDesc=document.getElementById('bookDesc').value;
+    let date=document.getElementById('date').value;
+    let category=document.getElementById('select').value;
+    let price=document.getElementById('price').value;
+       
+    if(bookName&&authName&&bookDesc&&date&&category&&price){
+        data={
+        bookName,
+        authName,
+        bookDesc,
+        date,
+        category,
+        price
+    }
+
+    if(localStorage.getItem('books')==null){
+        localStorage.setItem('books',JSON.stringify([]))
+    }
+    let oldData=JSON.parse(localStorage.getItem('books'));
+    oldData.push(data);
+    localStorage.setItem('books',JSON.stringify(oldData));
+    console.log(JSON.parse(localStorage.getItem('books')))
+    }
+    
+
+    }
+</script>
 </html>
